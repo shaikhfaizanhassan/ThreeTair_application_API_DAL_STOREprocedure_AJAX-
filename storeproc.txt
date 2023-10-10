@@ -1,0 +1,41 @@
+SELECT TOP (1000) [sid]
+      ,[sname]
+  FROM [DemoDb].[dbo].[studentabke]
+
+  create proc GetAllStudent
+  as
+  begin
+  select * from studentabke;
+  end
+
+  CREATE PROCEDURE CreateStudent
+(
+    @Sname NVARCHAR(255)
+)
+AS
+BEGIN
+    INSERT INTO Students (Sname)
+    VALUES (@Sname);
+END
+
+ CREATE PROCEDURE GetStudentById
+(
+    @StudentId INT
+)
+AS
+BEGIN
+    SELECT * FROM studentabke WHERE sid = @StudentId;
+END
+
+alter PROCEDURE CreateStudent
+(
+    @Sname NVARCHAR(255)
+)
+AS
+BEGIN
+    INSERT INTO studentabke(Sname)
+    VALUES (@Sname);
+END
+
+ALTER TABLE studentabke
+ADD CONSTRAINT UC_Sname UNIQUE (sname);
